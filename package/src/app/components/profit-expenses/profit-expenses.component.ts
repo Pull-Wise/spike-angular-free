@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import {
   ApexResponsive,
   NgApexchartsModule,
 } from 'ng-apexcharts';
+import { SupabaseService } from 'src/app/services/supabase.service';
+import { CommonModule } from '@angular/common';
 
 
 interface month {
@@ -45,10 +47,10 @@ export interface profitExpanceChart {
 @Component({
   selector: 'app-profit-expenses',
   standalone: true,
-  imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
+  imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule, CommonModule],
   templateUrl: './profit-expenses.component.html',
 })
-export class AppProfitExpensesComponent {
+export class AppProfitExpensesComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
@@ -60,22 +62,40 @@ export class AppProfitExpensesComponent {
     { value: 'june', viewValue: 'Nov 2024' },
   ];
 
+  lastSevenDays : string[] = [];
+  lastSevenDaysSearchData  = [];
+  isChartLoaded : boolean = false;
 
-  constructor() {
+
+  constructor(public supabaseService : SupabaseService) {
+
+
+  }
+
+  async ngOnInit(){
+      
+    this.lastSevenDaysSearchData = await this.getDataForPastSevenDays();
+    this.lastSevenDays = this.getPast7Days();
+
+    let count = this.lastSevenDaysSearchData.map((data : any) => data.count)
+    while (count.length < 7) {
+      count.push(0);
+  }
+    count = count.reverse();    
 
     // sales overview chart
     this.profitExpanceChart = {
       series: [
         {
-          name: 'Eanings this month',
-          data: [9, 5, 3, 7, 5, 10, 3],
+          name: 'Search Appearences',
+          data: count,
           color: '#0085db',
         },
-        {
-          name: 'Expense this month',
-          data: [6, 3, 9, 5, 4, 6, 4],
-          color: '#fb977d',
-        },
+        // {
+        //   name: 'Expense this month',
+        //   data: [6, 3, 9, 5, 4, 6, 4],
+        //   color: '#fb977d',
+        // },
       ],
 
       grid: {
@@ -103,7 +123,7 @@ export class AppProfitExpensesComponent {
       legend: { show: false },
       xaxis: {
         type: 'category',
-        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        categories: this.lastSevenDays,
         axisTicks: {
           show: false,
         },
@@ -135,5 +155,31 @@ export class AppProfitExpensesComponent {
       ],
     };
 
+    this.isChartLoaded = true;
   }
+
+  getPast7Days(): string[] {
+    const dates: string[] = [];
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+        const pastDate = new Date();
+        pastDate.setDate(today.getDate() - i);
+        dates.push(`${pastDate.getDate()}/${pastDate.getMonth() + 1}`);
+    }
+
+    return dates.reverse(); // Reverse to maintain ascending order
+  }
+
+  
+
+  async getDataForPastSevenDays(){
+    let userId = sessionStorage.getItem('user_id') ?? '';
+    let data = await this.supabaseService.getSearchDataForPastSevenDays(userId);
+    return data;
+  }
+
+
+
+
 }

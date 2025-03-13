@@ -1,0 +1,115 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Edit Product</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-lg-4">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Product Name</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input [disabled]="true" matInput formControlName="product_name" placeholder="your name " />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Product category</mat-label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="product_category" [(value)]="selectedCategory">
+                @for(option of categoryFilterList; track option.value) {
+                <mat-option [value]="option.value">{{
+                  option.description
+                  }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Curernt stock availability</mat-label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="current_stock" [(value)]="selectedStockAvailability">
+                @for(option of stockAvailability; track option.value) {
+                <mat-option [value]="option.value">{{
+                  option.viewValue
+                  }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4">
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Product description</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <textarea matInput formControlName="product_description"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4">
+          <!-- Price -->
+            <mat-label class="f-w-600 m-b-8 d-block">Price (In Rupees) </mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput formControlName="price" placeholder="your name " />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+        <div class="col-lg-4">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">Product link</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formControlName="product_link" placeholder="your name " />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">Social Media (Post link)</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formControlName="sm_post_link" placeholder="your name " />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">Social Media (Video link)</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formControlName="sm_video_link" placeholder="your name " />
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-12">
+          <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Attachments</mat-label>
+        </div>
+        <div class="col-lg-12">
+          <div>
+            <label for="file-upload" class="file-upload-label">
+              <input id="file-upload" type="file" (change)="uploadFile($event)"
+                [disabled]="uploading || uploadedFiles.length >= maxFiles" />
+              <span *ngIf="uploadedFiles.length < maxFiles">
+                Choose a file
+              </span>
+              <span *ngIf="uploadedFiles.length >= maxFiles">
+                Maximum files reached
+              </span>
+            </label>
+
+            <div *ngIf="uploading">Uploading...</div>
+
+            <ul>
+              <li *ngFor="let file of uploadedFiles; let i = index">
+                {{ file.attachment_key }}
+                <button (click)="removeFile(file, i)">Remove</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        <div class="m-t-12">
+          <button mat-flat-button color="primary" class="m-r-8" (click)="this.saveProduct()">Submit</button>
+          <button mat-stroked-button color="warn" (click)="this.closePopup()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

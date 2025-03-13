@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "environments": "ng generate environments"
   },
   "private": true,
   "dependencies": {
@@ -22,12 +23,14 @@
     "@angular/router": "^18.0.3",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@supabase/supabase-js": "^2.48.1",
     "angular-tabler-icons": "^2.7.0",
     "apexcharts": "^3.49.0",
     "ng-apexcharts": "1.10.0",
     "ngx-scrollbar": "^12.0.0",
     "rxjs": "~7.5.0",
     "sass": "^1.57.1",
+    "spike": "file:",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.7"
   },

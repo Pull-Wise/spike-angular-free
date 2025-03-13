@@ -134,6 +134,11 @@
   }
 }
 
+.clickable-icon {
+  color: $primary;
+  cursor: pointer;
+}
+
 .auth-card {
   margin: 50px auto;
   max-width: 1130px;
@@ -163,4 +168,39 @@
   .auth-card {
     min-width: 1130px;
   }
+}
+
+.link-button {
+  background: none !important;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-button:disabled {
+  color: gray;
+  text-decoration: none;
+  cursor: not-allowed;
+}
+
+.disabled-link {
+  pointer-events: none;
+  color: gray !important;
+  text-decoration: none;
+}
+
+.default-snackbar {
+  background-color: #323232;
+  color: #ffffff;
+}
+
+.success-snackbar {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336; /* Red */
+  color: white;
 }

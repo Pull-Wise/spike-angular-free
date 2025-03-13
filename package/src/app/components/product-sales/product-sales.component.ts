@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import {
   ApexResponsive,
   NgApexchartsModule,
 } from 'ng-apexcharts';
+import { SupabaseService } from 'src/app/services/supabase.service';
+import { CommonModule } from '@angular/common';
 
 export interface productsalesChart {
   series: ApexAxisChartSeries;
@@ -39,24 +41,34 @@ export interface productsalesChart {
 @Component({
   selector: 'app-product-sales',
   standalone: true,
-  imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
+  imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule, CommonModule],
   templateUrl: './product-sales.component.html',
 })
-export class AppProductSalesComponent {
+export class AppProductSalesComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public productsalesChart!: Partial<productsalesChart> | any;
+  totalCount : number = 0;
+  pageLoaded : boolean = false;
 
 
-  constructor() {
+  constructor(public supabaseService : SupabaseService) {
 
+
+  }
+
+  async ngOnInit() {
+
+    this.totalCount = await this.supabaseService.getTotalSearchesToday();
+
+    
     this.productsalesChart = {
       series: [
         {
           name: '',
           color: '#8763da',
-          data: [25, 66, 20, 40, 12, 58, 20],
+          data: [0],
         },
       ],
 
@@ -92,6 +104,9 @@ export class AppProductSalesComponent {
         },
       },
     };
-
+    this.pageLoaded = true;
+      
   }
+
+
 }

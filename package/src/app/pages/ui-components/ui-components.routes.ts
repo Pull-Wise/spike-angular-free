@@ -8,6 +8,10 @@ import { AppMenuComponent } from './menu/menu.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { AppFormsComponent } from './forms/forms.component';
 import { AppTablesComponent } from './tables/tables.component';
+import { UserRegistrationComponent } from 'src/app/components/user-registration/user-registration.component';
+import { UserProfileComponent } from 'src/app/components/user-profile/user-profile.component';
+import { MyProductsComponent } from 'src/app/components/my-products/my-products.component';
+import { StockManagementComponent } from 'src/app/components/stock-management/stock-management.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -41,6 +45,18 @@ export const UiComponentsRoutes: Routes = [
         path: 'tables',
         component: AppTablesComponent,
       },
+      {
+        path: 'about',
+        component: UserProfileComponent
+      },
+      {
+        path: 'my-products',
+        component: MyProductsComponent
+      },
+      {
+        path: 'stock-management',
+        component: StockManagementComponent
+      }
     ],
   },
 ];

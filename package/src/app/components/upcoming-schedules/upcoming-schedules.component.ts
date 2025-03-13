@@ -71,42 +71,33 @@ export class AppUpcomingSchedulesComponent {
   stats2: stats2[] = [
     {
       id: 1,
-      time: '09.30 am',
+      time: 'Feb 2025',
       color: 'primary',
-      subtext: 'Payment received from John Doe of $385.90',
+      title: 'Launch Basic version of Sales basha with seller portal',
     },
     {
       id: 2,
-      time: '10.30 am',
+      time: 'April 2025',
       color: 'accent',
-      title: 'New sale recorded',
-      link: '#ML-3467',
+      subtext: 'Reach 1000 products listed and 10,000 buyers',
     },
     {
       id: 3,
-      time: '12.30 pm',
+      time: 'May 2025',
       color: 'success',
-      subtext: 'Payment was made of $64.95 to Michael',
+      title: 'Launch Advanced analytics',
     },
     {
       id: 4,
-      time: '12.30 pm',
-      color: 'warning',
-      title: 'New sale recorded',
-      link: '#ML-3467',
+      time: 'June 2025',
+      color: 'primary',
+      title: 'Launch premium subscriptions & plans',
     },
     {
       id: 5,
-      time: '12.30 pm',
-      color: 'error',
-      title: 'New arrival recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 6,
-      time: '12.30 pm',
+      time: '2026',
       color: 'success',
-      subtext: 'Payment was made of $64.95 to Michael',
+      subtext: 'Continue supporting the micro / small seller eco-system',
     },
   ];
 }

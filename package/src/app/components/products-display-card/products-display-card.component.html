@@ -1,0 +1,31 @@
+<mat-card class="carousel-container">
+    <div class="carousel-content">
+      <button mat-icon-button (click)="prevSlide()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+  
+      <ng-container *ngIf="isImage(productCard.attachment_links[currentIndex]); else videoOrUnsupported">
+        <img [src]="productCard.attachment_links[currentIndex]" alt="Image" class="media-content">
+      </ng-container>
+  
+      <ng-template #videoOrUnsupported>
+        <ng-container *ngIf="isVideo(productCard.attachment_links[currentIndex]); else unsupported">
+          <video class="media-content" controls autoplay muted loop>
+            <source [src]="productCard.attachment_links[currentIndex]" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </ng-container>
+      </ng-template>
+  
+      <ng-template #unsupported>
+        <div class="unsupported-content">
+          <mat-icon>error_outline</mat-icon>
+          <p>Unsupported Media</p>
+        </div>
+      </ng-template>
+  
+      <button mat-icon-button (click)="nextSlide()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </mat-card>

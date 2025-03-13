@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { StarterComponent } from './starter/starter.component';
+import { UserRegistrationComponent } from '../components/user-registration/user-registration.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -12,5 +13,5 @@ export const PagesRoutes: Routes = [
         { title: 'Starter' },
       ],
     },
-  },
+  }
 ];

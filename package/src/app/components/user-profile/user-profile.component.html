@@ -1,0 +1,182 @@
+
+<div class=" justify-content-center">
+    <div >
+      <div class="position-relative ">
+        <div class="w-100 position-relative rounded bg-white auth-card">
+          <div class="auth-body">
+            <div class="row">
+              <!-- <div class="col-lg-6">
+              </div> -->
+              <div class="col-lg-12">
+                <div class="d-flex align-items-start align-items-lg-center justify-content-center">
+                  <div class="row justify-content-center w-100">
+                    <div class="col-lg-11">
+                      <h4 class="f-w-700 f-s-30 lh-base m-0">
+                        <div style="padding-top: 10px">
+                          User Profile  
+                          <mat-icon class="clickable-icon" (click)="onClickEdit()">edit</mat-icon>
+                        </div>
+                      </h4>
+  
+                      <form class="m-t-30" [formGroup]="form" >
+  
+                        <!-- Shop Name & Seller Name -->
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Shop Name</mat-label>
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <input matInput formControlName="store_name" />
+                              @if(f['store_name'].touched && f['store_name'].invalid) {
+                              <mat-hint class="m-b-16 error-msg">
+                                @if( f['store_name'].errors &&
+                                f['store_name'].errors['required']) {
+                                <div class="text-error">Shop Name is required.</div>
+                                } @if(f['store_name'].errors &&
+                                f['store_name'].errors['minlength']) {
+                                <div class="text-error">
+                                  Shop Name should be 2 character.
+                                </div>
+                                }
+                              </mat-hint>
+                              }
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+                            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Seller Name</mat-label>
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <input matInput formControlName="seller_name" />
+                              @if(f['seller_name'].touched && f['seller_name'].invalid) {
+                              <mat-hint class="m-b-16 error-msg">
+                                @if( f['seller_name'].errors &&
+                                f['seller_name'].errors['required']) {
+                                <div class="text-error">Seller Name is required.</div>
+                                } @if(f['seller_name'].errors &&
+                                f['seller_name'].errors['minlength']) {
+                                <div class="text-error">
+                                  Seller Name should be 4 character.
+                                </div>
+                                }
+                              </mat-hint>
+                              }
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                        <!-- Shop address & about section -->
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Shop Address</mat-label>
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <textarea matInput formControlName="address"></textarea>
+                              @if(f['address'].touched && f['address'].invalid) {
+                              <mat-hint class="m-b-16 error-msg">
+                                @if( f['address'].errors &&
+                                f['address'].errors['required']) {
+                                <div class="text-error">Shop Name is required.</div>
+                                }
+                              </mat-hint>
+                              }
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+                            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">About shop</mat-label>
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <textarea placeholder="let us know about the things you sell" matInput formControlName="about_store"></textarea>
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                        <!-- Primary & secondary phone number -->
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Primary phone number</mat-label>
+                              <mat-icon matPrefix>phone</mat-icon>
+                              <input matInput formControlName="primary_phone" />
+                              @if(f['primary_phone'].touched && f['primary_phone'].invalid) {
+                              <mat-hint class="m-b-16 error-msg">
+                                @if(f['primary_phone'].errors &&
+                                f['primary_phone'].errors['required']) {
+                                <div class="text-error">Primary phone number is required.</div>
+                                }
+                              </mat-hint>
+                              }
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Secondary phone number</mat-label>
+                              <mat-icon matPrefix>phone</mat-icon>
+                              <input matInput formControlName="secondary_phone" />
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                        <!-- Email address -->
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Email Address</mat-label>
+                              <input matInput type="email" formControlName="email_id" />
+                              @if(f['email_id'].touched && f['email_id'].invalid) {
+                              <mat-hint class="m-b-16 error-msg">
+                                @if(f['email_id'].errors &&
+                                f['email_id'].errors['required']) {
+                                <div class="text-error">Email is required.</div>
+                                }
+                              </mat-hint>
+                              }
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Youtube link</mat-label>
+                              <input matInput formControlName="youtube_link" />
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                        <!-- Instagram & Facebook links -->
+  
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Facebook business profile link</mat-label>
+                              <mat-icon matPrefix>facebook-box</mat-icon>
+                              <input matInput formControlName="facebook_link" />
+                            </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Instgram business profile link</mat-label>
+                              <input matInput formControlName="instagram_link" />
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <mat-form-field appearance="outline" class="w-100" color="primary">
+                              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Youtube link</mat-label>
+                              <input matInput formControlName="youtube_link" />
+                            </mat-form-field>
+                          </div>
+                        </div>
+  
+                      </form>
+                      <div class="m-t-8" style="display: flex; flex-direction: row-reverse;">
+                        <button mat-flat-button color="primary" class="w-10" [disabled]="!form.valid || this.diableEditButton" (click)="onClickUpdate()" >
+                          update
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,7 @@ import {
   ApexResponsive,
   NgApexchartsModule,
 } from 'ng-apexcharts';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 export interface trafficdistributionChart {
   series: ApexAxisChartSeries;
@@ -42,18 +43,20 @@ export interface trafficdistributionChart {
   imports: [MaterialModule, TablerIconsModule, MatButtonModule, NgApexchartsModule],
   templateUrl: './traffic-distribution.component.html',
 })
-export class AppTrafficDistributionComponent {
+export class AppTrafficDistributionComponent implements OnInit{
 
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public trafficdistributionChart!: Partial<trafficdistributionChart> | any;
+  searchCount : any = [];
+  percentageDifference : any;
 
 
-  constructor() {
+  constructor(public supabaseService : SupabaseService) {
 
     this.trafficdistributionChart = {
-      series: [5368, 3500, 4106],
-      labels: ['5368', 'Refferal Traffic', 'Oragnic Traffic'],
+      series: [ 0, 4106],
+      labels: [ 'Refferal Traffic', 'Oragnic Traffic'],
       chart: {
         type: 'donut',
         fontFamily: "'Plus Jakarta Sans', sans-serif;",
@@ -63,7 +66,7 @@ export class AppTrafficDistributionComponent {
         },
         height: 160,
       },
-      colors: ['#e7ecf0', '#fb977d', '#0085db'],
+      colors: ['#fb977d','#0085db'],
       plotOptions: {
         pie: {
           donut: {
@@ -110,4 +113,11 @@ export class AppTrafficDistributionComponent {
     };
 
   }
+
+  async ngOnInit() {
+    let userId = sessionStorage.getItem('user_id') ?? '';
+     this.searchCount = await this.supabaseService.getTodaysSearchData(userId) ;
+     this.percentageDifference = await this.supabaseService.getSearchPercentageChange(userId);
+  }
+
 }
