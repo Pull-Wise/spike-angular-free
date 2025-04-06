@@ -1,0 +1,33 @@
+version: "3"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/temporary.conf:/etc/nginx/temporary.conf:ro
+      - ./nginx/default.conf:/etc/nginx/default.conf:ro
+      - ./nginx/entrypoint.sh:/entrypoint.sh:ro
+      - letsencrypt:/etc/letsencrypt
+      - certbot_challenges:/var/www/certbot
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    depends_on:
+      - nginx
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - certbot_challenges:/var/www/certbot
+    entrypoint: ["/bin/sh", "-c", "sleep 20 && certbot certonly --webroot -w /var/www/certbot -d www.salesbasha.in -d www.salesbasha.in --email pullwise@outlook.com --agree-tos --non-interactive"]
+
+volumes:
+  letsencrypt:
+  certbot_challenges:
