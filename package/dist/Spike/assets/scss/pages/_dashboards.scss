@@ -1,0 +1,224 @@
+.timeline {
+    position: relative;
+
+    .timeline-item {
+        position: relative;
+        height: 70px;
+
+        .time {
+            padding: 6px 16px 6px 0;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .desc {
+            padding: 6px 16px;
+        }
+
+        .timline-border {
+            width: 1px;
+            height: 100%;
+            background-color: $borderColor;
+            flex-shrink: 0;
+        }
+
+        &:last-child {
+            height: 25px;
+        }
+
+        .point {
+            flex-direction: column;
+
+            .timeline-badge {
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                background-color: transparent;
+                flex-shrink: 0;
+
+                &.border-primary {
+                    border: 2px solid $primary !important;
+                }
+
+                &.border-accent {
+                    border: 2px solid $accent !important;
+                }
+
+                &.border-success {
+                    border: 2px solid $success;
+                }
+
+                &.border-warning {
+                    border: 2px solid $warning;
+                }
+
+                &.border-error {
+                    border: 2px solid $error;
+                }
+            }
+
+            .timeline-border {
+                width: 1px;
+                height: 100%;
+                background-color: $borderColor;
+                flex-shrink: 0;
+            }
+        }
+
+        &:last-child {
+            .timeline-border {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.user-category {
+    margin-top: -45px;
+    z-index: 1;
+    position: relative;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 242px;
+}
+
+.text-decoration-line-through {
+    text-decoration: line-through;
+}
+
+.cart-btn {
+    position: absolute !important;
+    right: 16px;
+    top: -21px;
+}
+
+.table-borderless {
+
+    .mdc-data-table__cell,
+    .mdc-data-table__header-cell {
+        border-bottom-color: transparent !important;
+
+        &:first-child {
+            padding-left: 0 !important;
+        }
+    }
+}
+
+.carousel-container {
+    width: 220px;
+    margin: auto;
+    text-align: center;
+}
+
+.carousel-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-content {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.unsupported-content {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+//   mat-icon {
+//     font-size: 48px;
+//     cursor: pointer;
+//   }
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carousel-indicators mat-icon {
+    font-size: 14px;
+    margin: 0 0px;
+    color: gray;
+    cursor: pointer;
+}
+
+.carousel-indicators mat-icon.active {
+    color: black;
+}
+
+// faq.component.css
+.faq-container {
+    width: 80%;
+    min-width: 80%;
+    height: 80%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  mat-expansion-panel {
+    margin-bottom: 10px;
+  }
+
+.milestone-title {
+  text-align: center;
+  font-size: 2.2rem; /* Slightly larger for grand effect */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #4f77b4; /* Deep royal blue */
+  background: linear-gradient(45deg, #42a5f5, #1e88e5, #1565c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 15px rgba(0, 0, 255, 0.3);
+  padding: 10px;
+  border-bottom: 3px solid #42a5f5; /* Adds a subtle underline */
+  display: inline-block;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .contact-card {
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+
+  .bottom-bar {
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    background: #1976d2;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
